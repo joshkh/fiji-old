@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Allowance for {{ getCurrentUser().name }}</h1>
+    </div>
+    <div class="col-sm-12">
+
+      <button ng-click="talk()">Talk</button>
+
+      <input date-range-picker class="form-control date-picker" type="text" ng-model="datePicker" />
+
+      <table class="table">
+        <tr ng-repeat="range in taken">
+          <td>{{range.reason}}</td>
+          <td>{{range.from}}</td>
+          <td>{{range.to}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
