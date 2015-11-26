@@ -9,8 +9,8 @@ module.exports =
   DOMAIN: 'http://localhost:9000'
   SESSION_SECRET: "fiji-secret"
 
-  GOOGLE_ID: 'app-id'
-  GOOGLE_SECRET: 'secret'
+  GOOGLE_ID: "909038004492-ksv9g5lclm5jofdpnosjr3ee9hakg3or.apps.googleusercontent.com"
+  GOOGLE_SECRET: 'oFJQl67kCC2oUQuSAzMZnnnF'
 
 
   # Control debug level for modules using visionmedia/debug

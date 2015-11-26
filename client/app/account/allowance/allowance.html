@@ -2,22 +2,80 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <h1>Allowance for {{ getCurrentUser().name }}</h1>
+
+    <div class="col-sm-6">
+
     </div>
+
+    <div class="col-sm-6">
+
+      <form action="#" class="form-horizontal ws-validate">
+        <div class="form-group">
+            <label>Dates</label>
+            <input
+              date-range-picker
+              class="form-control date-picker"
+              type="text"
+              ng-model="datePicker" />
+        </div>
+        <div class="form-group">
+            <label>Comment</label>
+            <input
+              type="text"
+              class="form-control"
+              ng-model="comment"
+              placeholder="Gone fish'n" />
+        </div>
+        <div class="form-group">
+          <label for="sel1">Type</label>
+          <select class="form-control" ng-model="reason">
+            <option>Holiday</option>
+            <option>Conference</option>
+            <option>Sickday</option>
+          </select>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">First day is a half day.</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">Last day is a half day.</label>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn primary pull-right" ng-click="talk()">Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+
     <div class="col-sm-12">
 
-      <button ng-click="talk()">Talk</button>
 
-      <input date-range-picker class="form-control date-picker" type="text" ng-model="datePicker" />
 
-      <table class="table">
-        <tr ng-repeat="range in taken">
-          <td>{{range.reason}}</td>
-          <td>{{range.from}}</td>
-          <td>{{range.to}}</td>
-        </tr>
+      <table class="table table-striped">
+        <thead>
+          <th>Reason</th>
+          <th>Comment</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Working Days Missed</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="absence in absences">
+              <td>{{absence.reason}}</td>
+              <td>{{absence.comment}}</td>
+              <td>{{friendlydate(absence.from)}}</td>
+              <td>{{friendlydate(absence.to)}}</td>
+              <td>{{absence.workdays}}</td>
+          </tr>
+        </tbody>
       </table>
+
+
 
     </div>
   </div>

@@ -10,24 +10,9 @@ authTypes = [
   'google'
 ]
 
-TakenSchema = new Schema(
-  reason: String
-  from: Date
-  to: Date
-)
-
-
-AllowancesSchema = new Schema(
-  year: Number
-  amount: Number
-)
-
-
 UserSchema = new Schema(
   crsid: String
   name: String
-  allowances: [AllowancesSchema]
-  taken: [TakenSchema]
   email:
     type: String
     lowercase: true
@@ -42,8 +27,6 @@ UserSchema = new Schema(
   google: {}
   github: {}
 )
-
-
 
 
 ###*

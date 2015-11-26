@@ -7,6 +7,12 @@ to disable, edit config/environment/index.js, and set `seedDB: false`
 
 Thing = require '../api/thing/thing.model'
 User = require '../api/user/user.model'
+Absence = require '../api/absence/absence.model'
+Allowance = require '../api/allowance/allowance.model'
+
+
+Absence.find({}).remove -> console.log "finished removing absences"
+# Allowance.find({}).remove -> console.log "finished remove allowances"
 
 Thing.find({}).remove ->
   Thing.create

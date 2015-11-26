@@ -20,7 +20,7 @@ angular.module 'fijiApp'
     authenticate: true
 
   .state 'allowance',
-    url: '/allowance'
+    url: '/schedule'
     templateUrl: 'app/account/allowance/allowance.html'
     controller: 'AllowanceCtrl'
     authenticate: true
