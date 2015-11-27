@@ -28,7 +28,7 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
     yeoman:
       # configurable paths
-      
+
       client: require('./bower.json').appPath or 'client'
       dist: 'dist'
 
@@ -232,10 +232,10 @@ module.exports = (grunt) ->
           /bootstrap.js/
           '/json3/'
           '/es5-shim/'
-          
+
           /bootstrap.css/
           /font-awesome.css/
-          
+
         ]
 
     # Renames files for browser caching purposes
@@ -425,7 +425,7 @@ module.exports = (grunt) ->
       dist: [
         'coffee'
         'less'
-        'imagemin'
+        # 'imagemin'
         'svgmin'
       ]
 
@@ -676,4 +676,3 @@ module.exports = (grunt) ->
     'test'
     'build'
   ])
-
