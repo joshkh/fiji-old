@@ -34,20 +34,28 @@
             <option>Sickday</option>
           </select>
         </div>
-        <div class="checkbox">
-          <label><input type="checkbox" value="">First day is a half day.</label>
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox" value="">Last day is a half day.</label>
+        <div class="row form-group">
+          <div class="col-sm-6">
+            <div class="checkbox">
+              <label><input type="checkbox" value="">First day is a half day.</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="checkbox" ng-hide="singleday">
+              <label><input type="checkbox" value="">Last day is a half day.</label>
+            </div>
+          </div>
         </div>
         <div class="form-group">
-          <button type="button" class="btn primary pull-right" ng-click="talk()">Submit</button>
+          <button type="button" class="btn btn-primary" ng-click="talk()">Submit</button>
         </div>
       </form>
 
     </div>
 
   </div>
+
+  <button type="button" class="btn btn-primary" ng-click="getStats()">Stats</button>
 
   <div class="row">
 
@@ -63,6 +71,7 @@
           <th>From</th>
           <th>To</th>
           <th>Working Days Missed</th>
+          <th></th>
         </thead>
         <tbody>
           <tr ng-repeat="absence in absences">
@@ -70,7 +79,8 @@
               <td>{{absence.comment}}</td>
               <td>{{friendlydate(absence.from)}}</td>
               <td>{{friendlydate(absence.to)}}</td>
-              <td>{{absence.workdays}}</td>
+              <td>{{absence.workdays.length}}</td>
+              <td><button ng-click="delete(absence)" class="btn btn-danger"><i class="fa fa-trash-o"></i> Cancel</button></td>
           </tr>
         </tbody>
       </table>

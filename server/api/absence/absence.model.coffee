@@ -8,7 +8,7 @@ AbsenceSchema = new Schema
   comment: String
   from: Date
   to: Date
-  workdays: Number
+  days: [Date]
   reason: type: String, default: "Holiday"
 
 module.exports = mongoose.model 'Absence', AbsenceSchema

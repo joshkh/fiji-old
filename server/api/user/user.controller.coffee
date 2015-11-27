@@ -4,6 +4,8 @@ User = require './user.model'
 passport = require 'passport'
 config = require '../../config/environment'
 jwt = require 'jsonwebtoken'
+Absence = require '../absence/absence.model'
+moment = require 'moment'
 
 validationError = (res, err) ->
   res.status(422).json err
@@ -80,6 +82,22 @@ exports.me = (req, res, next) ->
     return next(err)  if err
     return res.status(401).end()  unless user
     res.json user
+
+exports.stats = (req, res, next) ->
+  userId = req.user._id
+  User.findOne
+    _id: userId
+  , '-salt -hashedPassword', (err, user) -> # don't ever give out the password or salt
+    return next(err)  if err
+    return res.status(401).end()  unless user
+    Absence
+      .where 'email', user.email
+      .where('from').lte moment().startOf('day')
+      .then (found, er) ->
+        console.log "FOUND", found
+        res.json found
+    # res.json user.email
+
 
 ###*
 Authentication callback

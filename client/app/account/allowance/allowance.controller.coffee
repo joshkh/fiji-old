@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'fijiApp'
-.controller 'AllowanceCtrl', ($scope, $http, Auth) ->
+.controller 'AllowanceCtrl', ($scope, $http, Auth, User) ->
 
 
   $scope.getCurrentUser = Auth.getCurrentUser
@@ -9,7 +9,6 @@ angular.module 'fijiApp'
   # $scope.datePicker = {todayHighlight: true}
 
   user = Auth.getCurrentUser();
-  debugger
 
 
   $scope.friendlydate = (date) ->
@@ -17,22 +16,32 @@ angular.module 'fijiApp'
 
 
 
-  $scope.$watch 'datePicker', (val) -> null
+  $scope.$watch 'datePicker', (val) ->
+    if val
+      if val.startDate.toString() == val.endDate.toString()
+        $scope.singleday = true
+
 
   getAllowance = ->
     $http.get('/api/allowances/' + user.email).then (success) ->
-      debugger
+      # debugger
       $scope.absences = success.data
     , (failure) -> null
 
   getAbsences = ->
     $http.get('/api/absences').then (success) ->
       $scope.absences = success.data
+      # debugger
     , (failure) -> null
 
+  $scope.getStats = ->
+    $http.get('/api/absences/test/2015').then (success) ->
+      # $scope.absences = success.data
+      debugger
+    , (failure) -> null
   $scope.talk = ->
 
-    debugger
+    # debugger
 
     payload =
       from: $scope.datePicker.startDate.toDate()
@@ -45,6 +54,13 @@ angular.module 'fijiApp'
     $http.post('/api/absences', payload).then (success) ->
       getAbsences()
     , (failure) -> null
+
+  $scope.delete = (absence) ->
+    # debugger
+    $http.delete('/api/absences/' + absence._id).then (success) ->
+      debugger
+      getAbsences()
+    , (failure) -> debugger
 
 
   getAllowance()

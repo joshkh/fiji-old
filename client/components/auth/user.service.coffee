@@ -15,3 +15,7 @@ angular.module 'fijiApp'
       params:
         id: 'me'
 
+    stats:
+      method: 'GET'
+      params:
+        id: 'stats'

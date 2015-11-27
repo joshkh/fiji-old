@@ -7,6 +7,7 @@ auth = require '../../auth/auth.service'
 router = express.Router()
 
 router.get '/', controller.index
+router.get '/test/:year', auth.isAuthenticated(), controller.test
 router.get '/:id', controller.show
 router.post '/', auth.isAuthenticated(), controller.create
 router.put '/:id', controller.update
